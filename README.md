@@ -1,37 +1,21 @@
-#TCP-server
-import socket
+#tcp_client
+
+from socket import *
 
 #创建套接字
-sockfd = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+sockfd = socket()
 
-#绑定地址
-sockfd.bind(('0.0.0.0',8888))
+#发起连接
+server_addr = ('127.0.0.1',8888)
+sockfd.connect(server_addr)
 
-#设置监听
-sockfd.listen(5)
-
-#消息收发
-def recv_and_send(connfd,addr):
-    while True:
-        data = connfd.recv(1024)
-        if data.decode() == '##':
-            connfd.send('Bye'.encode())
-            return
-        else:
-            print('Receive message:',data.decode())
-            n = connfd.send('Receive your massage!!'.encode())
-            print('Send %d bytes'%n)
-#等待处理客户端连接
+#收发消息
 while True:
-    print('Waitting for Connect...')
-    connfd,addr = sockfd.accept()
-    print('Connect from',addr) #客户端地址
-    recv_and_send(connfd,addr)
+    data1 = input('请输入要发送的消息:')
+    sockfd.send(data1.encode())
+    data = sockfd.recv(1024)
+    print('From server:',data.decode())
+    if data1 == '##':
+        break
 
-
-
-#关闭连接
-connfd.close()
 sockfd.close()
-
-
