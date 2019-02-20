@@ -1,19 +1,33 @@
 python网络编程
 
 day1
+
 OSI七层模型
+
 传输层服务
+
 socket套接字编程
+
 day2
+
 Tcp套接字传输数据特点
+
 UDP套接字编程
+
 socket模块方法和socket套接字属性
+
 TCP套接字之HTTP传输
+
 day4
+
 HTTP协议(续)
+
 IO
+
 Python实现IO多路复用
+
 位运算
+
 
 
 day4
